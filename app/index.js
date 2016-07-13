@@ -24,7 +24,9 @@ class SimpleApplication extends Component {
       <div>
         <Label numero={this.state.numero} />
         <Button cambiarNumero={this.handleCambiarNumero.bind(this)} />
-        <ButtonRestar restarNUmero={this.handleRestarNumero.bind(this)}/>
+       {/* Version 1
+         <ButtonRestar restarNUmero={this.handleRestarNumero.bind(this)}/>
+        */}
       </div>
     );
   }
@@ -44,15 +46,17 @@ class Label extends Component {
   }
 }
 
-class ButtonRestar extends Component{
+{/* Version Uno
+  class ButtonRestar extends Component{
 
-  render(){
-    return(
-      <button onClick={this.props.restarNUmero}>Restar</button>
-    );
+    render(){
+      return(
+        <button onClick={this.props.restarNUmero}>Restar</button>
+      );
+    }
   }
+*/}
 
-}
 
 class Button extends Component {
   static get propTypes() {
