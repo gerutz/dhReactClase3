@@ -24,8 +24,8 @@ class SimpleApplication extends Component {
     return (
       <div>
         <Label valor = {this.state.value}/>
-        <Button operacionSumar={this.handleSumar.bind(this)}/>
-        {/*<Button operacionRestar={this.handleRestar.bind(this)}/>*/}
+        <ButtonSumar operacionSumar={this.handleSumar.bind(this)}/>
+        <ButtonRestar operacionRestar={this.handleRestar.bind(this)}/>
       </div>
     );
   }
@@ -41,11 +41,21 @@ class Label extends Component {
   }
 }
 
-class Button extends Component {
+class ButtonSumar extends Component {
   render () {
     return (
       <div>
         <button type="submit" onClick={this.props.operacionSumar} >Sumar </button>
+      </div>
+    );
+  }
+}
+
+class ButtonRestar extends Component {
+  render () {
+    return (
+      <div>
+        <button type="submit" onClick={this.props.operacionRestar} >Restar </button>
       </div>
     );
   }
