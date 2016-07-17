@@ -8,7 +8,8 @@ export default class SimpleApplication extends Component {
 constructor (props) {
   super(props);
   this.state = {
-    value : "Hola Mundo"
+    value : "Hola Mundo",
+    sexo : "asdf"
   }
 }
 
@@ -16,13 +17,13 @@ handleValueChange (event) {
   this.setState({value : event.target.value});
 }
 
+handleSelectedOption (event) {
+  this.setState({sexo: event.target.value})
+}
+
 handlePrintImput (){
   console.log(this.state.value);
-  {/*Donde capturo este imput me da undefined*/}
-  if(this._input !== null){
-    console.log(this._input);
-  }
-
+  console.log(this.state.sexo);
 }
 
 render() {
@@ -30,7 +31,10 @@ render() {
     <div>
       <InputControlado defaultValue = {this.state.value}
                        changeValue = {this.handleValueChange.bind(this)}/>
-      <InputNoControlado />
+
+      <SelectorSexo defaultValue = {this.state.sexo}
+                    seleccion = {this.handleSelectedOption.bind(this)}/>
+
       <Button  printInput = {this.handlePrintImput.bind(this)}/>
     </div>
   );
@@ -38,22 +42,26 @@ render() {
 
 }//end SimpleApplication
 
+export default class SelectorSexo extends Component {
+  render(){
+    return(
+      <div>
+        <select value={this.props.defaultValue} onChange={this.props.seleccion}>
+          <option value="Masculino" >Masculino</option>
+          <option value="Femenino" >Femenino </option>
+          <option value="Otro">Otro </option>
+        </select>
+      </div>
+
+    );
+  }
+}
+
 export default class InputControlado extends Component {
   render (){
     return (
       <div>
         <input type="text" value={this.props.defaultValue} onChange={this.props.changeValue}/>
-      </div>
-    );
-  }
-}
-
-
-export default class InputNoControlado extends Component {
-  render(){
-    return (
-      <div>
-        <input type="text" ref={(c) => this._input = c} />
       </div>
     );
   }
