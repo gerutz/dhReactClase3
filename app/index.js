@@ -5,42 +5,65 @@ const content = document.getElementById('content');
 
 export default class SimpleApplication extends Component {
 
-constructor (props) {
-  super(props);
-  this.state = {
-    value : "Hola Mundo",
-    sexo : "asdf"
+  constructor (props) {
+    super(props);
+    this.state = {
+      value : "Hola Mundo",
+      sexo : "asdf",
+      chequeado : null
+    }
   }
-}
 
-handleValueChange (event) {
-  this.setState({value : event.target.value});
-}
+  handleValueChange (event) {
+    this.setState({value : event.target.value});
+  }
 
-handleSelectedOption (event) {
-  this.setState({sexo: event.target.value})
-}
+  handleSelectedOption (event) {
+    this.setState({sexo: event.target.value})
+  }
 
-handlePrintImput (){
-  console.log(this.state.value);
-  console.log(this.state.sexo);
-}
+  handlePrintImput (){
+    console.log(this.state.value);
+    console.log(this.state.sexo);
+  }
 
-render() {
-  return (
-    <div>
-      <InputControlado defaultValue = {this.state.value}
-                       changeValue = {this.handleValueChange.bind(this)}/>
+  handleRadioStatus (event) {
+    this.setState({chequeado : event.target.value});
+  }
 
-      <SelectorSexo defaultValue = {this.state.sexo}
-                    seleccion = {this.handleSelectedOption.bind(this)}/>
+  render() {
+    return (
+      <div>
+        <InputControlado defaultValue = {this.state.value}
+                         changeValue = {this.handleValueChange.bind(this)}/>
 
-      <Button  printInput = {this.handlePrintImput.bind(this)}/>
-    </div>
-  );
-}
+        <SelectorSexo defaultValue = {this.state.sexo}
+                      seleccion = {this.handleSelectedOption.bind(this)}/>
+
+        <Radiogroup  defaultValue = {this.state.chequeado}
+                     newStatus = {this.handleRadioStatus.bind(this)}
+        />
+
+        <Button  printInput = {this.handlePrintImput.bind(this)}/>
+      </div>
+    );
+  }
 
 }//end SimpleApplication
+
+export default class Radiogroup extends Component{
+  render(){
+    return(
+      <div >
+
+          <input type="radio" checked={this.props.defaultValue} value="casado">Casado</input>
+          <input type="radio" checked={this.props.defaultValue} value="soltero">Soltero</input>
+
+      </div>
+    );
+  }
+
+}
 
 export default class SelectorSexo extends Component {
   render(){
